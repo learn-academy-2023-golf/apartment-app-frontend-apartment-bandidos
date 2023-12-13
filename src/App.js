@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import './App.css';
+import { Container } from "reactstrap";
 import { Routes, Route } from "react-router-dom";
+import "./App.css";
 import mockUsers from "./mockUsers.js";
 import mockApartments from "./mockApartments.js";
 import Header from "./components/Header.js";
@@ -23,27 +24,34 @@ const App = () => {
   console.log("apartments", apartments);
 
   return (
-    <>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Header />
-      <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route
-          path="/apartmentindex"
-          element={<ApartmentIndex apartments={apartments} />}
-        />
-        <Route path="/apartmentprotectedindex" element={<ApartmentProtectedIndex />} />
-        <Route
-          path="/apartmentshow/:id"
-          element={<ApartmentShow apartments={apartments} />}
-        />
-        <Route path="/apartmentnew" element={<ApartmentNew />} />
-        <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Container style={{ flex: 1 }}>
+        <Routes>
+          <Route exact path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route
+            path="/apartmentindex"
+            element={<ApartmentIndex apartments={apartments} />}
+          />
+          <Route
+            path="/apartmentprotectedindex"
+            element={<ApartmentProtectedIndex />}
+          />
+          <Route
+            path="/apartmentshow/:id"
+            element={<ApartmentShow apartments={apartments} />}
+          />
+          <Route path="/apartmentnew" element={<ApartmentNew />} />
+          <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Container>
       <Footer />
-    </>
+    </div>
   );
 };
 
