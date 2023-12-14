@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 const ApartmentIndex = ({ apartments }) => {
   return (
     <>
+      <h1>Here is a list of our apartments</h1>
       <div className="index-card">
         {apartments.map((apartment, index) => {
           return (
@@ -21,7 +22,7 @@ const ApartmentIndex = ({ apartments }) => {
                 width: "18rem",
               }}
             >
-              <img alt="Sample" src={apartment.image} />
+              <img alt={`image of ${index}`} src={apartment.image} />
               <CardBody>
                 <CardTitle tag="h5">
                   Unit: {apartment.unit}, {apartment.street}, {apartment.city},{" "}
