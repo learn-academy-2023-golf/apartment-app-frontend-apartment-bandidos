@@ -24,11 +24,10 @@ const App = () => {
   console.log("apartments", apartments);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
-    >
+  
+      <>
       <Header />
-      <Container style={{ flex: 1 }}>
+      
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/signin" element={<SignIn />} />
@@ -49,9 +48,8 @@ const App = () => {
           <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Container>
       <Footer />
-    </div>
+      </>
   );
 };
 
