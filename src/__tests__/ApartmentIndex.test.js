@@ -12,7 +12,7 @@ describe("<ApartmentIndex />", () => {
         <ApartmentIndex apartments={mockApartments} />
       </BrowserRouter>
     );
-    screen.logTestingPlaygroundURL();
+    
   });
   it("displays a heading", () => {
     expect(

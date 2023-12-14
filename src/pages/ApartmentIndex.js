@@ -34,8 +34,8 @@ const ApartmentIndex = ({ apartments }) => {
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
                   Bedrooms: {apartment.bedrooms} / Bathrooms: {apartment.bathrooms}
                 </CardSubtitle>
-                <NavLink>
-                  <Button>Button</Button>
+                <NavLink to={`/apartmentshow/${apartment.id}`}>
+                  <Button>See more info</Button>
                 </NavLink>
               </CardBody>
             </Card>

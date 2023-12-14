@@ -11,7 +11,7 @@ describe("<Home />", () => {
           <Home />
         </BrowserRouter>
       );
-      screen.logTestingPlaygroundURL()
+      
     });
     it("displays a message", () => {
         expect(
