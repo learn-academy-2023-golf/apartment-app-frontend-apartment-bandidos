@@ -9,7 +9,7 @@ import {
   NavLink,
 } from "reactstrap";
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
   return (
@@ -24,11 +24,16 @@ const Header = () => {
             <NavItem>
               <NavLink href="/apartmentIndex/">Index</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/signin">
-                SignIn
-              </NavLink>
-            </NavItem>
+            {currentUser && (
+              <NavItem>
+                <NavLink href="/apartmentProtectedIndex">MyIndex</NavLink>
+              </NavItem>
+            )}
+            {!currentUser && (
+              <NavItem>
+                <NavLink href="/signin">SignIn</NavLink>
+              </NavItem>
+            )}
           </Nav>
         </Collapse>
       </Navbar>

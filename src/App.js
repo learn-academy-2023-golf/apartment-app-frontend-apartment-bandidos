@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Container } from "reactstrap";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import mockUsers from "./mockUsers.js";
@@ -23,33 +22,45 @@ const App = () => {
   console.log("currentUser", currentUser);
   console.log("apartments", apartments);
 
+  const deleteApartment = () => {};
+
   return (
-  
-      <>
-      <Header />
-      
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/apartmentindex"
-            element={<ApartmentIndex apartments={apartments} />}
-          />
+    <>
+      <Header currentUser={currentUser} />
+
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route
+          path="/apartmentindex"
+          element={<ApartmentIndex apartments={apartments} />}
+        />
+        {currentUser && (
           <Route
             path="/apartmentprotectedindex"
-            element={<ApartmentProtectedIndex />}
+            element={
+              <ApartmentProtectedIndex
+                currentUser={currentUser}
+                apartments={apartments}
+                deleteApartment={deleteApartment}
+              />
+            }
           />
-          <Route
-            path="/apartmentshow/:id"
-            element={<ApartmentShow apartments={apartments} />}
-          />
-          <Route path="/apartmentnew" element={<ApartmentNew />} />
-          <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        )}
+        {!currentUser && (
+          <Route path="/apartmentprotectedindex" element={<NotFound />} />
+        )}
+        <Route
+          path="/apartmentshow/:id"
+          element={<ApartmentShow apartments={apartments} />}
+        />
+        <Route path="/apartmentnew" element={<ApartmentNew />} />
+        <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
       <Footer />
-      </>
+    </>
   );
 };
 
