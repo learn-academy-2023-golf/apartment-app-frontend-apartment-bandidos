@@ -24,9 +24,11 @@ const App = () => {
 
   const deleteApartment = () => {};
 
+  const logout = () => {};
+
   return (
     <>
-      <Header currentUser={currentUser} />
+      <Header currentUser={currentUser} logout={logout} />
 
       <Routes>
         <Route exact path="/" element={<Home />} />
