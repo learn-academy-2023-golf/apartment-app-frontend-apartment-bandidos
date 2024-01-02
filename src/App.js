@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import mockUsers from "./mockUsers.js";
@@ -15,18 +15,90 @@ import ApartmentNew from "./pages/ApartmentNew.js";
 import ApartmentEdit from "./pages/ApartmentEdit.js";
 import NotFound from "./pages/NotFound.js";
 
+
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(mockUsers[1]);
-  const [apartments, setApartments] = useState(mockApartments);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [apartments, setApartments] = useState([]);
 
   console.log("currentUser", currentUser);
   console.log("apartments", apartments);
 
-  const deleteApartment = () => {};
+  const deleteApartment = () => { };
 
-  const logout = () => {};
+  const createApartment = () => { };
 
-  const createApartment = () => {};
+  // authentication methods
+  const signin = (userInfo) => {
+    fetch(`https://localhost:3000/signin`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        localStorage.setItem("user", JSON.stringify(payload))
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("login errors: ", error))
+  }
+
+  const signup = (userInfo) => {
+    fetch(`http://localhost:3000/signup`, {
+      body: JSON.stringify(userInfo),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      method: "POST",
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw Error(response.statusText)
+        }
+        // store the token
+        localStorage.setItem("token", response.headers.get("Authorization"))
+        return response.json()
+      })
+      .then((payload) => {
+        localStorage.setItem("user", JSON.stringify(payload))
+        setCurrentUser(payload)
+      })
+      .catch((error) => console.log("login errors: ", error))
+  }
+
+  const logout = () => {
+    fetch(`http://localhost:300/logout`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: localStorage.getItem("token"), //retrieve the token
+      },
+      method: "DELETE",
+    })
+      .then((payload) => {
+        localStorage.removeItem("token") // remove the token
+        localStorage.removeItem("user")
+        setCurrentUser(null)
+      })
+      .catch((error) => console.log("log out errors: ", error))
+  }
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem("user")
+    if (loggedInUser) {
+      setCurrentUser(JSON.parse(loggedInUser))
+    }
+  
+  }, [])
+
 
   return (
     <>
@@ -34,8 +106,8 @@ const App = () => {
 
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/signin" element={<SignIn signin={signin}/>} />
+        <Route path="/signup" element={<SignUp signup= {signup}/>} />
         <Route
           path="/apartmentindex"
           element={<ApartmentIndex apartments={apartments} />}

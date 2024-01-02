@@ -112,7 +112,7 @@ describe("<ApartmentNew />", () => {
   it("renders a Button", () => {
     expect(
       screen.getByRole("button", {
-        name: /sign in/i,
+        name: /add/i,
       })
     ).toBeInTheDocument();
   });

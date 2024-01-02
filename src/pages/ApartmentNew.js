@@ -36,7 +36,7 @@ const ApartmentNew = ({createApartment}) => {
                 id="exampleAddress"
                 name="address"
                 placeholder="1234 Main St"
-                onchange={handleChange}
+                onChange={handleChange}
               />
             </FormGroup>
 
@@ -44,7 +44,7 @@ const ApartmentNew = ({createApartment}) => {
               <Col md={6}>
                 <FormGroup>
                   <Label for="exampleCity">City</Label>
-                  <Input id="exampleCity" name="city" onchange={handleChange} />
+                  <Input id="exampleCity" name="city" onChange={handleChange} />
                 </FormGroup>
 
                 <FormGroup>
@@ -53,7 +53,7 @@ const ApartmentNew = ({createApartment}) => {
                     id="exampleAddress2"
                     name="squareFootage"
                     placeholder=""
-                    onchange = {handleChange} 
+                    onChange = {handleChange} 
                   />
                 </FormGroup>
               </Col>
@@ -61,7 +61,7 @@ const ApartmentNew = ({createApartment}) => {
                 <FormGroup>
                   <Label for="exampleState">State</Label>
                   <Input id="exampleState" name="state" 
-                    onchange = {handleChange}
+                    onChange = {handleChange}
                   />
                 </FormGroup>
                 <FormGroup>
@@ -71,7 +71,7 @@ const ApartmentNew = ({createApartment}) => {
                     name="Price"
                     placeholder="$0.00"
                     type="text"
-                    onchange={handleChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
@@ -83,7 +83,7 @@ const ApartmentNew = ({createApartment}) => {
                     name="password"
                     placeholder="0"
                     type="number"
-                    onchange={handleChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
@@ -95,7 +95,7 @@ const ApartmentNew = ({createApartment}) => {
                     name="password"
                     placeholder="0"
                     type="number"
-                    onchange={handleChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
@@ -107,7 +107,7 @@ const ApartmentNew = ({createApartment}) => {
                     name="password"
                     placeholder="Yes, hippopotamuses only"
                     type="text"
-                    onchange={handleChange}
+                    onChange={handleChange}
                   />
                 </FormGroup>
               </Col>
@@ -120,7 +120,7 @@ const ApartmentNew = ({createApartment}) => {
                   name="image"
                   placeholder="URL"
                   type="text"
-                  onchange={handleChange}
+                  onChange={handleChange}
                 />
               </FormGroup>
             </Row>
@@ -133,7 +133,7 @@ const ApartmentNew = ({createApartment}) => {
                 name="password"
                 placeholder="URL"
                 type="text"
-                onchange={handleChange}
+                onChange={handleChange}
               />
             </FormGroup>
           </Col>
