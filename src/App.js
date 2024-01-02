@@ -16,7 +16,7 @@ import ApartmentEdit from "./pages/ApartmentEdit.js";
 import NotFound from "./pages/NotFound.js";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(mockUsers[0]);
+  const [currentUser, setCurrentUser] = useState(mockUsers[1]);
   const [apartments, setApartments] = useState(mockApartments);
 
   console.log("currentUser", currentUser);
@@ -25,6 +25,8 @@ const App = () => {
   const deleteApartment = () => {};
 
   const logout = () => {};
+
+  const createApartment = () => {};
 
   return (
     <>
@@ -57,7 +59,10 @@ const App = () => {
           path="/apartmentshow/:id"
           element={<ApartmentShow apartments={apartments} />}
         />
-        <Route path="/apartmentnew" element={<ApartmentNew />} />
+        <Route
+          path="/apartmentnew"
+          element={<ApartmentNew createApartment={createApartment} />}
+        />
         <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
