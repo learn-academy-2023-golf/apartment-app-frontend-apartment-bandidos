@@ -32,7 +32,8 @@ const ApartmentIndex = ({ apartments }) => {
                   ${apartment.price}
                 </CardSubtitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  Bedrooms: {apartment.bedrooms} / Bathrooms: {apartment.bathrooms}
+                  Bedrooms: {apartment.bedrooms} / Bathrooms:{" "}
+                  {apartment.bathrooms}
                 </CardSubtitle>
                 <NavLink to={`/apartmentshow/${apartment.id}`}>
                   <Button>See more info</Button>

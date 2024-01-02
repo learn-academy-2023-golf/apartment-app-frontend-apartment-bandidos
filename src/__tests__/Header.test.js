@@ -7,7 +7,7 @@ describe("<Header />", () => {
   beforeEach(() => {
     render(
       <BrowserRouter>
-        <Header />
+        <Header currentUser={false} />
       </BrowserRouter>
     );
   });
@@ -43,12 +43,58 @@ describe("<Header />", () => {
   it("has a link to SignIn with correct role", () => {
     expect(
       screen.getByRole("link", {
-        name: /signin/i,
+        name: /sign in/i,
       })
     ).toBeInTheDocument();
   });
   it("has a clickable link called SignIn", () => {
-    userEvent.click(screen.getByText(/signin/i));
-    expect(screen.getByText(/signin/i)).toBeInTheDocument();
+    userEvent.click(screen.getByText(/sign in/i));
+    expect(screen.getByText(/sign in/i)).toBeInTheDocument();
+  });
+  it("has a link to MyIndex with correct role", () => {
+    const currentUser = true;
+    render(
+      <BrowserRouter>
+        <Header currentUser={currentUser} />
+      </BrowserRouter>
+    );
+    expect(
+      screen.getByRole("link", {
+        name: /MyIndex/i,
+      })
+    ).toBeInTheDocument();
+  });
+  it("has a clickable link called My Index", () => {
+    const currentUser = true;
+    render(
+      <BrowserRouter>
+        <Header currentUser={currentUser} />
+      </BrowserRouter>
+    );
+    userEvent.click(screen.getByText(/MyIndex/i));
+    expect(screen.getByText(/MyIndex/i)).toBeInTheDocument();
+  });
+  it("has a link to Log Out with correct role", () => {
+    const currentUser = true;
+    render(
+      <BrowserRouter>
+        <Header currentUser={currentUser} />
+      </BrowserRouter>
+    );
+    expect(
+      screen.getByRole("link", {
+        name: /log out/i,
+      })
+    ).toBeInTheDocument();
+  });
+  it("has a clickable link called Log Out", () => {
+    const currentUser = true;
+    render(
+      <BrowserRouter>
+        <Header currentUser={currentUser} />
+      </BrowserRouter>
+    );
+    userEvent.click(screen.getByText(/log out/i));
+    expect(screen.getByText(/log out/i)).toBeInTheDocument();
   });
 });
