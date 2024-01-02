@@ -12,6 +12,7 @@ import {
 const Header = ({ currentUser, logout }) => {
   const [collapsed, setCollapsed] = useState(true);
   const toggleNavbar = () => setCollapsed(!collapsed);
+  
   return (
     <div>
       <Navbar color="info" light expand="sm">
