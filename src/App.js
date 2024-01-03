@@ -20,6 +20,17 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [apartments, setApartments] = useState([]);
 
+  useEffect(() => {
+    readApartment()
+  }, [])
+
+  const readApartment = () => {
+    fetch("http://localhost:3000/apartments")
+    .then((response) => response.json())
+    .then((payload) => setApartments(payload))
+    .catch((error) => console.log(error))
+  }
+
   console.log("currentUser", currentUser);
   console.log("apartments", apartments);
 
@@ -29,7 +40,7 @@ const App = () => {
 
   // authentication methods
   const signin = (userInfo) => {
-    fetch(`https://localhost:3000/signin`, {
+    fetch(`http://localhost:3000/login`, {
       body: JSON.stringify(userInfo),
       headers: {
         "Content-Type": "application/json",
