@@ -3,23 +3,28 @@ import { Form, FormGroup, Label, Input, Col, Button, Row } from "reactstrap";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
 
-const ApartmentNew = ({createApartment}) => {
+const ApartmentNew = ({createApartment, currentUser}) => {
   const navigate = useNavigate();
   const [newApartment, setNewApartment] = useState({
-    address: "",
+    street: "",
     city: "",
-    squareFootage: "",
+    square_footage: "",
     state: "",
     price: "",
-    bed: "",
-    bath: "",
+    bedrooms: "",
+    bathrooms: "",
     pets: "",
     image: "",
+    unit: "",
+    user_id: currentUser?.id
   });
 
   const handleChange = (e) => {
     setNewApartment({ ...newApartment, [e.target.name]: e.target.value });
   };
+
+  console.log (newApartment)
+  console.log (currentUser.id)
 
   const handleSubmit = () => {
     createApartment(newApartment);
@@ -34,7 +39,7 @@ const ApartmentNew = ({createApartment}) => {
               <Label for="exampleAddress">Address</Label>
               <Input
                 id="exampleAddress"
-                name="address"
+                name="street"
                 placeholder="1234 Main St"
                 onChange={handleChange}
               />
@@ -51,7 +56,7 @@ const ApartmentNew = ({createApartment}) => {
                   <Label for="exampleAddress2">Square footage</Label>
                   <Input
                     id="exampleAddress2"
-                    name="squareFootage"
+                    name="square_footage"
                     placeholder=""
                     onChange = {handleChange} 
                   />
@@ -67,8 +72,8 @@ const ApartmentNew = ({createApartment}) => {
                 <FormGroup>
                   <Label for="examplePrice">Price</Label>
                   <Input
-                    id="examplPrice"
-                    name="Price"
+                    id="examplePrice"
+                    name="price"
                     placeholder="$0.00"
                     type="text"
                     onChange={handleChange}
@@ -80,7 +85,7 @@ const ApartmentNew = ({createApartment}) => {
                   <Label for="examplePassword">Bed</Label>
                   <Input
                     id="examplePassword"
-                    name="password"
+                    name="bedrooms"
                     placeholder="0"
                     type="number"
                     onChange={handleChange}
@@ -92,7 +97,7 @@ const ApartmentNew = ({createApartment}) => {
                   <Label for="examplePassword">Bath</Label>
                   <Input
                     id="examplePassword"
-                    name="password"
+                    name="bathrooms"
                     placeholder="0"
                     type="number"
                     onChange={handleChange}
@@ -104,7 +109,7 @@ const ApartmentNew = ({createApartment}) => {
                   <Label for="examplePassword">Pets</Label>
                   <Input
                     id="examplePassword"
-                    name="password"
+                    name="pets"
                     placeholder="Yes, hippopotamuses only"
                     type="text"
                     onChange={handleChange}
@@ -129,9 +134,9 @@ const ApartmentNew = ({createApartment}) => {
             <FormGroup>
               <Label for="exampleZip">Unit</Label>
               <Input
-                id="examplePassword"
-                name="password"
-                placeholder="URL"
+                id="exampleZip"
+                name="unit"
+                placeholder="Unit Number"
                 type="text"
                 onChange={handleChange}
               />
