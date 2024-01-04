@@ -53,12 +53,7 @@ const App = () => {
       console.log("Apartment create error:", error);
     });
 }
-  //   .then((response) => response.json())
-  //     .then(() => readApartment())
-  //     .catch((errors) =>
-  //     console.log("Aparment create errors:"))
-  // }
-   
+ 
 
   // authentication methods
   const signin = (userInfo) => {
