@@ -31,12 +31,29 @@ const App = () => {
     .catch((error) => console.log(error))
   }
 
-  console.log("currentUser", currentUser);
-  console.log("apartments", apartments);
 
   const deleteApartment = () => { };
 
-  const createApartment = () => { };
+  const createApartment = (apartment) => {
+    fetch('http://localhost:3000/apartments', {
+      body: JSON.stringify(apartment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method:"POST",
+    })
+    .then((response) => {
+      if (!response.ok) {
+        throw Error(response.statusText);
+      }
+      return response.json();
+    })
+    .then(() => readApartment())
+    .catch((error) => {
+      console.log("Apartment create error:", error);
+    });
+}
+ 
 
   // authentication methods
   const signin = (userInfo) => {
@@ -88,7 +105,7 @@ const App = () => {
   }
 
   const logout = () => {
-    fetch(`http://localhost:300/logout`, {
+    fetch(`http://localhost:3000/logout`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: localStorage.getItem("token"), //retrieve the token
@@ -144,7 +161,7 @@ const App = () => {
         />
         <Route
           path="/apartmentnew"
-          element={<ApartmentNew createApartment={createApartment} />}
+          element={<ApartmentNew createApartment={createApartment} currentUser={currentUser}/>}
         />
         <Route path="/apartmentedit/:id" element={<ApartmentEdit />} />
         <Route path="*" element={<NotFound />} />
